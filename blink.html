@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Staatliches');
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #131313;
+        justify-content: space-around;
+        overflow-x: hidden;
+        font-size: 5.1rem;
+    }
+
+    .blink {
+        position: absolute;
+        top: 53%;
+        left: 27%;
+    }
+
+    flicker {
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: 2rem;
+        color: #EEDDE0;
+        text-shadow: 0 0 30px #63D7EC,
+            0 0 10px #A1D6E669,
+            0 0 100px #63D7EC,
+            0 0 500px #67E3F3,
+            5px 9px 5px #00000080;
+    }
+
+    flicker.off {
+        font-weight: 100;
+        color: #213A42A4;
+        text-shadow: 7px 7px 5px #00000080;
+    }
+</style>
+
+<body>
+    <h1 class="blink">B L I N K</h1>
+    <script>
+        var textHolder = document.getElementsByTagName('h1')[0],
+            text = textHolder.innerHTML,
+            chars = text.length,
+            newText = '',
+            i;
+
+        for (i = 0; i < chars; i += 1) {
+            newText += '<flicker>' + text.charAt(i) + '</flicker>';
+        }
+        textHolder.innerHTML = newText;
+        var letters = document.getElementsByTagName('flicker'),
+            flickerAmount = [1, 2, 5, 7, 9, 11, 13],
+            letterChoice,
+            flickerInter, counter;
+
+        function findInter(from, to) {
+            return Math.floor(Math.random() * (to - from + 1) + from);
+        }
+
+        function hasClass(element, cls) {
+            return ('' + element.className + '').indexOf('' + cls + '') > -1;
+        }
+
+        function flicker() {
+            counter += 1;
+
+            if (counter === flickerInter) {
+                return;
+            }
+
+            setTimeout(function () {
+                if (hasClass(letterChoice, 'off')) {
+                    letterChoice.className = '';
+                } else {
+                    letterChoice.className = 'off';
+                }
+                flicker();
+            }, 30);
+        }(function loop() {
+            var rand = findInter(500, 3000);
+            letterChoice = findInter(0, 9);
+            letterChoice = letters[letterChoice];
+            flickerInter = findInter(0, 7);
+            flickerInter = flickerAmount[flickerInter];
+            setTimeout(function () {
+                counter = 0;
+                flicker();
+                loop();
+            }, rand);
+        }());
+    </script>
+</body>
+
+</html>

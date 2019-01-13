@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link href="https://fonts.googleapis.com/css?family=Erica+One" rel="stylesheet" />
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<title>Shadow</title>
+</head>
+<style>
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		font-family: "Erica One", cursive;
+		font-size: 5.3rem;
+		font-weight: 900;
+		background-color: #3aaaaa;
+		justify-content: space-around;
+		overflow-x: hidden;
+	}
+
+	.shadow {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		left: 50vw;
+		color: #3aaaaa;
+		font-size: 4.7rem;
+	}
+
+	.one {
+		position: relative;
+	}
+
+	.two {
+		position: relative;
+		left: -5%;
+	}
+
+	.three {
+		position: relative;
+		left: -2;
+	}
+
+	.four {
+		position: relative;
+		left: 4%;
+	}
+
+	.five {
+		position: relative;
+		left: 2%;
+	}
+
+	.six {
+		position: relative;
+	}
+</style>
+
+<body>
+	<h1 class="shadow">
+		<span class="one">S</span>
+		<span class="two">H</span>
+		<span class="three">A</span>
+		<span class="four">D</span>
+		<span class="five">O</span>
+		<span class="six">W</span>
+	</h1>
+	<script>
+		// USES JQUERY
+		var h1 = $('h1') // GET CONTROLLED ELEMENT
+		var topText = h1.offset().top + (h1.height() / 2);
+		var leftText = h1.offset().left + (h1.width() / 2);
+
+		$(document).on('mousemove', function (e) { // DETERMINE MOUSE COORDINATES | SHADOW DISTANCE
+			var mx = e.clientX;
+			var my = e.clientY;
+			var dx = leftText - mx;
+			var dy = topText - my;
+			var blur = Math.sqrt((dx * dx) + (dy * dy));
+			h1.css({ // MOVES SHADOW
+				"text-shadow": dx / 45 + "px " + dy / 45 + "px " + blur / 45 + "px " + "rgba(0,0,0,.5)",
+				"-webkit-text-shadow": dx / 45 + "px " + dy / 45 + "px " + blur / 45 + "px " + "rgba(0,0,0,.5)",
+				"-moz-text-shadow": dx / 45 + "px " + dy / 45 + "px " + blur / 45 + "px " + "rgba(0,0,0,.5)",
+				"-o-text-shadow": dx / 45 + "px " + dy / 45 + "px " + blur / 45 + "px " + "rgba(0,0,0,.5)"
+			});
+		});
+	</script>
+</body>
+
+</html>
