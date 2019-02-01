@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link href="img/favicon.png" rel="shortcut icon" type="image/png">
+    <title>TC Brown | Developer/Designer</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0; 
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        background: #000000;
+        overflow: hidden; 
+    }
+
+    #starsBox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.75);
+        opacity: .5; }
+        #starsBox span {
+        display: inline-block;
+        width: auto;
+        position: absolute;
+        border-radius: 100%;
+        transition: 100s linear;
+        color: #FFFFFF; 
+    }
+
+    #planets {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.75);
+        opacity: .5; 
+    }
+
+    #planets span {
+        display: inline-block;
+        width: auto;
+        position: absolute;
+        border-radius: 100%;
+        transition: 100s linear;
+        color: #FFFFFF; 
+    }
+
+    .text {
+        position: fixed;
+        top: 45%;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: #FFFFFF;
+        font-family: 'Righteous', cursive;
+        font-size: 3rem; 
+    }
+
+    .fadeIn {
+        position: relative;
+        text-align: center; 
+    }
+
+    .fadeIn .iam {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        visibility: hidden;
+        opacity: 0; 
+    }
+
+    .fadeIn .iam.active {
+        visibility: visible;
+        opacity: 1; 
+    }
+
+    .fadeIn .iam span {
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.5s all ease-in-out; 
+    }
+
+    .fadeIn .iam span.active {
+        visibility: visible;
+        opacity: 1; 
+    }
+
+</style>
+
+<body>
+    <header>
+        <div class="container-fluid">
+
+            <nav class="navbar fixed-top navbar-expand-md navbar-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content"
+                    aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Brand -->
+                <a class="navbar-brand" href="index.html">TCBDev</a>
+
+                <!-- Links -->
+                <div class="collapse navbar-collapse" id="nav-content">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">ABOUT ME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">PORTFOLIO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">CONTACT ME</a>
+                        </li>
+                    </ul>
+            </nav>
+    </header>
+    <div id="starsBox"><span id="planets"></span></div>
+
+    <script>
+        var cols = ['#F5D76E', '#8DD6E9', '#777777', '#ECF0F1', '#A2DED0', '#D64541'];
+        var pCols = ['#FF8360', '#93326E', '#B33C86', '#ECF0F1', '##C05F9C', '#5B8E7D'];
+        var stars = 250;
+
+        for (var i = 0; i <= stars; i++) {
+            var size = Math.random() * 4;
+            var color = cols[parseInt(Math.random() * 6)];
+            $('#starsBox').prepend('<span style=" width: ' + size + 'px; height: ' + size + 'px; top: ' + Math.random() *
+                100 + '%; left: ' + Math.random() * 100 + '%; background: ' + color + '; box-shadow: 0 0 ' + Math.random() *
+                3 + 'px' + color + ';"></span>');
+        };
+
+        setTimeout(function () {
+            $('#starsBox span').each(function () {
+                $(this).css('top', Math.random() * 100 + '%').css('left', Math.random() * 100 + '%');
+            });
+        }, 1);
+
+        setInterval(function () {
+            $('#starsBox span').each(function () {
+                $(this).css('top', Math.random() * 100 + '%').css('left', Math.random() * 100 + '%');
+            });
+        }, 100000);
+
+        // Initialize tooltip component
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        // Initialize popover component
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+    </script>
+</body>
+
+</html>
